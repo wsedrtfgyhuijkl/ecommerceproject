@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
- */
 class ReviewFactory extends Factory
 {
     /**
@@ -16,8 +15,15 @@ class ReviewFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create();
+
         return [
-            //
+            'product_id' => function () {
+                return Product::all()->random()->id; // Retrieve the random product's ID
+            },
+            'customer' => $faker->name,
+            'review' => $faker->paragraph,
+            'star' => $faker->numberBetween(0, 5),
         ];
     }
 }
