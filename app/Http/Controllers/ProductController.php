@@ -20,7 +20,7 @@ class ProductController extends Controller
         // // return response()->json([
         // //     "data"=>$product
         // // ]);
-        return  Productcollection::collection(Product::all());
+        return  Productcollection::collection(Product::paginate(20));
         
     }
 
